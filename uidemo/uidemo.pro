@@ -16,11 +16,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arrow.cpp \
+    diagramitem.cpp \
+    diagramscene.cpp \
+    diagramtextitem.cpp \
+    diagramwidget.cpp \
+    info.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    nodeitem.cpp \
+    qactionex.cpp \
+    qgraphicsviewex.cpp \
+    qpushbuttonex.cpp \
+    qsliderex.cpp \
+    qtableviewex.cpp
 
 HEADERS += \
-    mainwindow.h
+    arrow.h \
+    diagramitem.h \
+    diagramscene.h \
+    diagramtextitem.h \
+    diagramwidget.h \
+    info.h \
+    mainwindow.h \
+    nodeitem.h \
+    qactionex.h \
+    qgraphicsviewex.h \
+    qpushbuttonex.h \
+    qsliderex.h \
+    qtableviewex.h
 
 FORMS += \
     mainwindow.ui
@@ -29,3 +53,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    uidemo.pro.user
