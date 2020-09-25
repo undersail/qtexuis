@@ -7,7 +7,7 @@ Info::Info(NodeItem *baseItem,QGraphicsItem *parent, QGraphicsScene *scene)
 {
 	m_baseItem = baseItem;
 	setFlag(QGraphicsItem::ItemIsSelectable, true);
-	m_infoColor = Qt::black;
+    m_infoColor = Qt::black;
  	setPen(QPen(m_infoColor, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 }
 
@@ -17,7 +17,7 @@ QRectF Info::boundingRect() const
 {
 	int yOffset = -25;
 	if (m_baseItem->pos().y() > 0){
-		yOffset = 0;
+        yOffset = 0;
 	}
 
 	return QRectF(m_baseItem->pos(), QSizeF(0,0))

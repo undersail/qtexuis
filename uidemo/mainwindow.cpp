@@ -88,15 +88,18 @@ void MainWindow::createExToolbars()
     toolButtonRedraw->setChecked(true);
     toolButtonRedraw->setIcon(QIcon(trx(":/linepointer.png")));
     toolButtonRedraw->setToolTip(trx("重绘图形"));
+    toolButtonRedraw->setStatusTip(trx("重绘图形"));
     QToolButton *toolButtonMove = new QToolButton;
     toolButtonMove->setCheckable(true);
     toolButtonMove->setChecked(true);
     toolButtonMove->setIcon(QIcon(trx(":/pointer.png")));
     toolButtonMove->setToolTip(trx("移动图形"));
+    toolButtonMove->setStatusTip(trx("移动图形"));
     QToolButton *toolButtonModify = new QToolButton;
     toolButtonModify->setCheckable(true);
     toolButtonModify->setIcon(QIcon(trx(":/Modify.png")));
     toolButtonModify->setToolTip(trx("调整图形"));
+    toolButtonModify->setStatusTip(trx("调整图形"));
 
     buttonGroupPointer = new QButtonGroup;
     buttonGroupPointer->addButton(toolButtonRedraw,int(DiagramScene::RedrawItem));
@@ -237,14 +240,13 @@ void MainWindow::InitWidgets()
     graphicsViewEx = new QGraphicsViewEx(diagramScene,this);
     diagramScene->setGraphicsView(graphicsViewEx);
     graphicsViewEx->setObjectName((trx("GVE")));							// 设置对象句,相当于css里的id
-    graphicsViewEx->setStyleSheet((trx("#GVE {background-color:black;}")));	// 设置id对应元素的背景色
+    graphicsViewEx->setStyleSheet((trx("#GVE {background-color:lightgray;}")));	// 设置id对应元素的背景色
     ui->dockWidgetDiagram->setFeatures(QDockWidget::NoDockWidgetFeatures);
     ui->dockWidgetDiagram->setWidget(graphicsViewEx);
     ui->gridLayoutAll->addWidget(ui->dockWidgetDiagram,0,1);
 
     createStatusBar();
 }
-
 
 
 void MainWindow::InitActions()
@@ -501,19 +503,19 @@ bool MainWindow::ShowSampleItem( int type, int id)
 
 void MainWindow::createStatusBar()
 {
-    labelInfo1 = new QLabel((trx(" EventInfo ")));
+    labelInfo1 = new QLabel(trx(" EventInfo "));
     labelInfo1->setAlignment(Qt::AlignLeft);
     labelInfo1->setMinimumSize(labelInfo1->sizeHint());
 
-    labelInfo2 = new QLabel((trx(" EventDetail ")));
-    labelInfo2->setAlignment(Qt::AlignHCenter);
+    labelInfo2 = new QLabel(trx(" EventDetail "));
+    labelInfo2->setAlignment(Qt::AlignLeft);
     labelInfo2->setMinimumSize(labelInfo2->sizeHint());
 
     statusBar()->insertWidget(1,labelInfo1,1);
     statusBar()->insertWidget(2,labelInfo2);
 
     //初始化
-    updateStatusBar(trx("初始化状态栏"),trx("初始化状态栏"));
+    updateStatusBar(trx(""),trx(""));
 }
 
 

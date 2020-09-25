@@ -60,7 +60,7 @@ DiagramItem::DiagramItem(DiagramItem::DiagramType itemType,unsigned int itemInde
     m_contextMenu = contextMenu;
 	m_itemColor = Qt::red;
 	setFlag(QGraphicsItem::ItemIsMovable, true);
-	setFlag(QGraphicsItem::ItemIsSelectable, true);
+    setFlag(QGraphicsItem::ItemIsSelectable, true);
 	QPainterPath path;
 	switch (m_itemType) {
 		case DT_POINT:

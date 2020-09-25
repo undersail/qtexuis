@@ -253,13 +253,13 @@ void DiagramScene::UpdateCurItemPos(bool b)
 			if ( item->type() == DiagramItem::Type &&
 				((DiagramItem *)item)->itemType() == m_curItemType && 
 				((DiagramItem *)item)->itemIndex() == m_curItemIndex) {
-					foreach(QGraphicsItem *node,item->childItems()) {
-						if (((NodeItem *)node)->type() == NodeItem::Type){
-							QPointF *pos = new QPointF(item->mapToScene(item->mapFromItem(node,0,0)));
-							verifyPoint(pos,m_imgCropRect);
-							m_curNodePos.append(pos);
-						}
-					}
+                foreach(QGraphicsItem *node,item->childItems()) {
+                    if (((NodeItem *)node)->type() == NodeItem::Type){
+                        QPointF *pos = new QPointF(item->mapToScene(item->mapFromItem(node,0,0)));
+                        verifyPoint(pos,m_imgCropRect);
+                        m_curNodePos.append(pos);
+                    }
+                }
 			}
 		}
 	} else {
@@ -289,15 +289,8 @@ void DiagramScene::UpdateCurItemPos(bool b)
 			QPointF *newPos = new QPointF(pos->x() - centerX, pos->y() - centerY);
 			newNodePos.append(newPos);
 		}
-		if ((int)m_curItemType > 5)
-		{
-			m_curItemColor = QColor(Qt::red);
-		}
-		else
-		{
-			unsigned int colorFlag = 0x0F << ((((int)m_curItemType) % 4) * 4) + m_curItemAlgType;
-			m_curItemColor = QColor(colorFlag);
-		}
+
+        m_curItemColor = QColor(Qt::blue);
 		item->setBrush(m_curItemColor);
 		item->createItem(newNodePos);
 		foreach(QPointF *pos,newNodePos) {
