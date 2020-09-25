@@ -65,14 +65,10 @@ void MainWindow::createExToolBox()
     connect(buttonGroupBackground, SIGNAL(buttonClicked(QAbstractButton *)),
         this, SLOT(backgroundButtonGroupClicked(QAbstractButton *)));
     QGridLayout *backgroundLayout = new QGridLayout;
-    backgroundLayout->addWidget(createBackgroundCellWidget(trx("Blue Grid"),
-        appPath + trx("\\images\\background1.png")), 0, 0);
-    backgroundLayout->addWidget(createBackgroundCellWidget(trx("White Grid"),
-        appPath + trx("\\images\\background2.png")), 1, 0);
-    backgroundLayout->addWidget(createBackgroundCellWidget(trx("Gray Grid"),
-        appPath + trx("\\images\\background3.png")), 2, 0);
-    backgroundLayout->addWidget(createBackgroundCellWidget(trx("No Grid"),
-        appPath + trx("\\images\\background4.png")), 3, 0);
+    backgroundLayout->addWidget(createBackgroundCellWidget(trx("Blue Grid"), trx(":/background1.png")), 0, 0);
+    backgroundLayout->addWidget(createBackgroundCellWidget(trx("White Grid"), trx(":/background2.png")), 1, 0);
+    backgroundLayout->addWidget(createBackgroundCellWidget(trx("Gray Grid"), trx(":/background3.png")), 2, 0);
+    backgroundLayout->addWidget(createBackgroundCellWidget(trx("No Grid"), trx(":/background4.png")), 3, 0);
     backgroundLayout->setRowStretch(4, 10);
     backgroundLayout->setColumnStretch(1, 10);
     QWidget *backgroundWidget = new QWidget;
@@ -90,16 +86,16 @@ void MainWindow::createExToolbars()
     QToolButton *toolButtonRedraw = new QToolButton;
     toolButtonRedraw->setCheckable(true);
     toolButtonRedraw->setChecked(true);
-    toolButtonRedraw->setIcon(QIcon(appPath + trx("\\images\\linepointer.png")));
+    toolButtonRedraw->setIcon(QIcon(trx(":/linepointer.png")));
     toolButtonRedraw->setToolTip(trx("重绘图形"));
     QToolButton *toolButtonMove = new QToolButton;
     toolButtonMove->setCheckable(true);
     toolButtonMove->setChecked(true);
-    toolButtonMove->setIcon(QIcon(appPath + trx("\\images\\pointer.png")));
+    toolButtonMove->setIcon(QIcon(trx(":/pointer.png")));
     toolButtonMove->setToolTip(trx("移动图形"));
     QToolButton *toolButtonModify = new QToolButton;
     toolButtonModify->setCheckable(true);
-    toolButtonModify->setIcon(QIcon(appPath + trx("\\images\\Modify.png")));
+    toolButtonModify->setIcon(QIcon(trx(":/Modify.png")));
     toolButtonModify->setToolTip(trx("调整图形"));
 
     buttonGroupPointer = new QButtonGroup;
@@ -116,6 +112,10 @@ void MainWindow::createExToolbars()
     toolBarDiagram->addWidget(toolButtonMove);
     toolBarDiagram->addWidget(toolButtonModify);
     toolBarDiagram->addSeparator();
+    toolBarDiagram->addAction(zoomInAction);
+    toolBarDiagram->addAction(zoomOutAction);
+    toolBarDiagram->addAction(zoomFitAction);
+    toolBarDiagram->addSeparator();
     toolBarDiagram->addAction(deleteAction);
     toolBarDiagram->addAction(toFrontAction);
     toolBarDiagram->addAction(sendBackAction);
@@ -123,47 +123,35 @@ void MainWindow::createExToolbars()
 
 void MainWindow::createExActions()
 {
-    zoomInAction = new QAction(QIcon(appPath + trx("\\images\\ZoomIn.png")),
-        trx("放大"), this);
+    zoomInAction = new QAction(QIcon(trx(":/ZoomIn.png")), trx("放大"), this);
     zoomInAction->setShortcut(trx("Ctrl+I"));
     zoomInAction->setStatusTip(trx("放大图形"));
-    connect(zoomInAction, SIGNAL(triggered()),
-        this, SLOT(ZoomInImg()));
+    connect(zoomInAction, SIGNAL(triggered()), this, SLOT(ZoomInImg()));
 
-    zoomOutAction = new QAction(QIcon(appPath + trx("\\images\\ZoomOut.png")),
-        trx("缩小"), this);
+    zoomOutAction = new QAction(QIcon(trx(":/ZoomOut.png")), trx("缩小"), this);
     zoomOutAction->setShortcut(trx("Ctrl+O"));
     zoomOutAction->setStatusTip(trx("缩小图形"));
-    connect(zoomOutAction, SIGNAL(triggered()),
-        this, SLOT(ZoomOutImg()));
+    connect(zoomOutAction, SIGNAL(triggered()), this, SLOT(ZoomOutImg()));
 
-    zoomFitAction = new QAction(QIcon(appPath + trx("\\images\\ZoomToFit.png")),
-        trx("适应窗口"), this);
+    zoomFitAction = new QAction(QIcon(trx(":/ZoomToFit.png")), trx("适应窗口"), this);
     zoomFitAction->setShortcut(trx("Ctrl+T"));
     zoomFitAction->setStatusTip(trx("使图形适应窗口"));
-    connect(zoomFitAction, SIGNAL(triggered()),
-        this, SLOT(ZoomToFitImg()));
+    connect(zoomFitAction, SIGNAL(triggered()), this, SLOT(ZoomToFitImg()));
 
-    toFrontAction = new QAction(QIcon(appPath + trx("\\images\\bringtofront.png")),
-        trx("前置"), this);
+    toFrontAction = new QAction(QIcon(trx(":/bringtofront.png")), trx("前置"), this);
     toFrontAction->setShortcut(trx("Ctrl+F"));
     toFrontAction->setStatusTip(trx("将图形对象移到前方"));
-    connect(toFrontAction, SIGNAL(triggered()),
-        this, SLOT(bringToFront()));
+    connect(toFrontAction, SIGNAL(triggered()), this, SLOT(bringToFront()));
 
-    sendBackAction = new QAction(QIcon(appPath + trx("\\images\\sendtoback.png")),
-        trx("后置"), this);
+    sendBackAction = new QAction(QIcon(trx(":/sendtoback.png")), trx("后置"), this);
     sendBackAction->setShortcut(trx("Ctrl+B"));
     sendBackAction->setStatusTip(trx("将图形对象移到后方"));
-    connect(sendBackAction, SIGNAL(triggered()),
-        this, SLOT(sendToBack()));
+    connect(sendBackAction, SIGNAL(triggered()), this, SLOT(sendToBack()));
 
-    deleteAction = new QAction(QIcon(appPath + trx("\\images\\delete.png")),
-        trx("删除"), this);
+    deleteAction = new QAction(QIcon(trx(":/delete.png")), trx("删除"), this);
     deleteAction->setShortcut(trx("Delete"));
     deleteAction->setStatusTip(trx("将图形对象删除"));
-    connect(deleteAction, SIGNAL(triggered()),
-        this, SLOT(deleteItem()));
+    connect(deleteAction, SIGNAL(triggered()), this, SLOT(deleteItem()));
 }
 
 
@@ -216,7 +204,7 @@ void MainWindow::InitWidgets()
 
 
     QLabel *labelLogo = new QLabel(this);
-    labelLogo->setPixmap(QPixmap(appPath + (trx("\\images\\LOGO.png"))));
+    labelLogo->setPixmap(QPixmap(trx(":/View.png")));
     ui->menubar->setCornerWidget(labelLogo);
 // 	connect(labelLogo,SIGNAL(clicked()), this, SLOT(ShowAboutInfo()));
 
@@ -243,14 +231,14 @@ void MainWindow::InitWidgets()
 
 
     ui->dockWidgetTool->setWidget(toolBoxDiagram);
-    ui->dockWidgetTool->setFeatures(QDockWidget::DockWidgetFloatable);
+    ui->dockWidgetTool->setFeatures(QDockWidget::NoDockWidgetFeatures);
     ui->gridLayoutAll->addWidget(ui->dockWidgetTool,0,0);
 
     graphicsViewEx = new QGraphicsViewEx(diagramScene,this);
     diagramScene->setGraphicsView(graphicsViewEx);
     graphicsViewEx->setObjectName((trx("GVE")));							// 设置对象句,相当于css里的id
     graphicsViewEx->setStyleSheet((trx("#GVE {background-color:black;}")));	// 设置id对应元素的背景色
-    ui->dockWidgetDiagram->setFeatures(QDockWidget::DockWidgetFloatable);
+    ui->dockWidgetDiagram->setFeatures(QDockWidget::NoDockWidgetFeatures);
     ui->dockWidgetDiagram->setWidget(graphicsViewEx);
     ui->gridLayoutAll->addWidget(ui->dockWidgetDiagram,0,1);
 
@@ -409,13 +397,13 @@ void MainWindow::backgroundButtonGroupClicked(QAbstractButton *button)
 
     QString text = button->text();
     if (text == trx("Blue Grid"))
-        diagramScene->setBackgroundBrush(QPixmap(appPath + (trx("\\images\\background1.png"))));
+        diagramScene->setBackgroundBrush(QPixmap(trx(":/background1.png")));
     else if (text == trx("White Grid"))
-        diagramScene->setBackgroundBrush(QPixmap(appPath + (trx("\\images\\background2.png"))));
+        diagramScene->setBackgroundBrush(QPixmap(trx(":/background2.png")));
     else if (text == trx("Gray Grid"))
-        diagramScene->setBackgroundBrush(QPixmap(appPath + (trx("\\images\\background3.png"))));
+        diagramScene->setBackgroundBrush(QPixmap(trx(":/background3.png")));
     else
-        diagramScene->setBackgroundBrush(QPixmap(appPath + (trx("\\images\\background4.png"))));
+        diagramScene->setBackgroundBrush(QPixmap(trx(":/background4.png")));
     diagramScene->update();
     graphicsViewEx->update();
 }
@@ -503,7 +491,7 @@ bool MainWindow::ShowSampleItem( int type, int id)
         break;
     }
 
-    diagramScene->SetCurItemInfo(DiagramItem::DiagramType(type),id,itemPos);
+    diagramScene->SetCurItemInfo(DiagramItem::DiagramType(type), id, itemPos);
     foreach(QPointF *pos, itemPos) {
         delete pos;
     }

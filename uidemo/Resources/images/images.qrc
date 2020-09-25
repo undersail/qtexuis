@@ -1,2 +1,32 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/res/images"/>
+    <qresource prefix="/">
+        <file>About.png</file>
+        <file>background1.png</file>
+        <file>background2.png</file>
+        <file>background3.png</file>
+        <file>background4.png</file>
+        <file>bold.png</file>
+        <file>bringtofront.png</file>
+        <file>delete.png</file>
+        <file>Help.png</file>
+        <file>images.qrc</file>
+        <file>Instruction.png</file>
+        <file>italic.png</file>
+        <file>linecolor.png</file>
+        <file>linepointer.png</file>
+        <file>Modify.png</file>
+        <file>Option.png</file>
+        <file>pointer.png</file>
+        <file>Quit.png</file>
+        <file>SaveParams.png</file>
+        <file>sendtoback.png</file>
+        <file>System.png</file>
+        <file>textpointer.png</file>
+        <file>underline.png</file>
+        <file>View.png</file>
+        <file>ZoomIn.png</file>
+        <file>ZoomOut.png</file>
+        <file>ZoomToFit.png</file>
+    </qresource>
+</RCC>
